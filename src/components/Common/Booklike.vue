@@ -258,7 +258,7 @@ export default {
 .bookBox li:nth-of-type(10n + 10) a .imgBox img {
   width: 100%;
   margin-right: 0;
-  min-height: 10rem;
+  min-height: 12.2rem;
   height: 12.2rem;
   overflow: hidden;
 }
@@ -483,7 +483,7 @@ export default {
 }
 .bookBox li img {
   width: 100%;
-  min-height: 5rem;
+  min-height: 8.2rem;
   height: 8.2rem;
   overflow: hidden;
 }

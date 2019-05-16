@@ -371,6 +371,7 @@ export default {
 }
 .bookBox li img {
   width: 100%;
+  min-height: 9rem;
   height: 9rem;
   overflow: hidden;
 }
