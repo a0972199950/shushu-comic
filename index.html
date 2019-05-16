@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+    <title>首页</title>
+  </head>
+  <body id="body">
+    <div id="app"></div>
+    <!-- 测试发送一次请求 -->
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        //获取token
+        var requestToken = window.localStorage.getItem('token');
+      	var refRequestToken = function(){
+            window.localStorage.removeItem("token");
+            var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+            var uuid = [];
+            for (var i = 0; i < 32; i++) uuid[i] = chars[0 | Math.random() * 62];
+            requestToken = uuid.join('');
+            window.localStorage.setItem("token", requestToken);
+            return requestToken;
+        }
+        var flag = 0;
+        var beforeRequest = function(){
+            var requestToken = refRequestToken();
+            $.ajax({
+                type: 'POST',
+                dateType:'json',
+                async: false,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+                    "Access-Token": requestToken
+                },
+                url: "/v1/fans/info",
+                success: function(res){
+                  if(res.errcode != 0){
+                    flag ++;
+                    if(flag < 3){
+                      beforeRequest();
+                    }else{
+                       alert("注册失败");
+                    }
+                  }
+                },
+                error:function(res){
+                  flag ++;
+                  if(flag < 3){
+                  	beforeRequest();
+                  }else{
+                     alert("注册失败");
+                  }
+                }
+            });
+        }
+        if(!requestToken){
+             beforeRequest();
+        }
+    </script>
+    <script src="/dist/build.js?v=6"></script>
+  </body>
+</html>
+
+
