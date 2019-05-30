@@ -28,6 +28,7 @@ var apiList = {
     2007: "/book/lists", //漫画搜索
     2008: "/book/chapter", //获取章节内容
     2009: "/book/minlist", //排序加载
+    2010: "/picture/err",
 
 
     3001: "/index/data", //获取推荐位数据

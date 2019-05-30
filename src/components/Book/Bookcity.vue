@@ -40,6 +40,8 @@
         imgSrc="thumb"
         say="description"
         jump="id"
+        :rand="likeBookConfig"
+        :moreId=44
       ></Booklike>
     </ul>
     <div v-show="bottomShow" class="bottomShow">我的底线在这里</div>
@@ -62,6 +64,7 @@ export default {
     return {
       topShow: false,
       bottomShow: false,
+      likeBookConfig:{isrand: 1, weight: 20, target: 78, high: 77},
       //搜索
       serch: {
         type: {

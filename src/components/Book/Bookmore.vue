@@ -2,7 +2,7 @@
 <template>
   <div id="Bookmore">
     <Topbar :title="title" zIndex="-1"></Topbar>
-    <Booklike title="猜你喜欢" pop class="newBook" :hotlist="Bookarr" hideClass="hide" :moreId="44"></Booklike>
+    <Booklike title="猜你喜欢" pop class="newBook" :hotlist="Bookarr" hideClass="hide" :moreId="44" :rand="likeBookConfig"></Booklike>
     <Bookcity bookcityClasshide="hide" :loaddata="loaddata" :httpurl="httpurl" :freenav="freenav" v-if="freenav!==11"></Bookcity>
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
       moreId: this.$route.params.id,
       Bookarr: [],
       freenav:this.$route.params.id,
+      likeBookConfig:{isrand: 1, weight: 20, target: 78, high: 77},
       httpurl:2009,
       loaddata:{
         num:'20',

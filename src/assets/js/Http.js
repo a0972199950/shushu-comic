@@ -7,7 +7,7 @@ import apiList from "./api.config";
 
 const merge = require("webpack-merge");
 
-var baseUrl = "http://apien.lookbywhile.com/v1"; //设置你的baseUrl
+var baseUrl = "http://aa.lanyuansp.com/v1"; //设置你的baseUrl
 
 
 /**
@@ -15,13 +15,13 @@ var baseUrl = "http://apien.lookbywhile.com/v1"; //设置你的baseUrl
 */
 switch (process.env.NODE_ENV) {
   case "development":
-    baseUrl = "http://apien.lookbywhile.com/v1"; //设置你的baseUrl
+    baseUrl = "http://aa.lanyuansp.com/v1"; //设置你的baseUrl
     break;
   case "production":
     baseUrl = "/v1";
     break;
   case "test":
-    baseUrl = "http://apien.lookbywhile.com/v1";
+    baseUrl = "http://aa.lanyuansp.com/v1";
     break;
 }
 

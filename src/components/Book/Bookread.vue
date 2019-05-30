@@ -3,8 +3,8 @@
 <template>
   <div id="bookread" @click="clickmenu()">
     <Topbar :readshow="readshow" :title="bookName" :sort="sort"></Topbar>
-    <div class="bookcontent" :style="{minHeight:minH}">
-      <div v-for="(val,index) in bookInfo" :key="index">
+    <div class="bookcontent" :style="{minHeight:minH}" id="readImgBox">
+      <div v-for="(val,index) in bookInfo" :key="index" class="readImgBox">
         <img v-lazy="val" :key="val">
       </div>
     </div>
@@ -81,7 +81,7 @@ export default {
       prevChapterId: "", //上一章
       nextChapterId: "", //下一章
       ispayshow: false, //是否显示收费引导
-      footerShow:true,//
+      footerShow: true, //
       bottomShow: false,
       iShowDown: -1, //安卓显示引导下载的提示展示重置
       readshow: true //Topbar头部显示细节
@@ -96,6 +96,28 @@ export default {
     }
   },
   methods: {
+    //检查图片是否加载完成
+    ErrorImg(e) {
+      var that = this;
+      var ImgUrl = e.src;
+      if(!e.statusImg){
+        e.statusImg = true;
+        console.log(e)
+        that.Http.post({
+          action: 2010,
+          showLoading:false,
+          data: { picurl: ImgUrl },
+          success: function(res) {
+            e.src = res.url;
+            console.log(res.url)
+            e.statusImg = false;
+          },
+          error:function(){
+            e.statusImg = false;
+          }
+        });
+      }
+    },
     //底部点击提示
     go_down() {
       this.DialogInfo("更多", "未删减版啪啪啪漫画");
@@ -241,6 +263,7 @@ export default {
     this.getcontent();
     this.getUserInfo();
     this.downApp();
+    this.$Lazyload.$on("error", this.ErrorImg);
   },
   props: {},
   watch: {

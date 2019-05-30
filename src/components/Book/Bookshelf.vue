@@ -18,7 +18,7 @@
       :rand="randConfig"
       :delBool="delBool"
     ></Book>
-    <Booklist title="猜你喜欢" pop class="newBook" :hotlist="likeBook" :num="9" :moreId=44></Booklist>
+    <Booklist title="猜你喜欢" pop class="newBook" :hotlist="likeBook" :num="9" :moreId=44 :rand="likeBookConfig"></Booklist>
     <tabFooter tab="Bookshelf"></tabFooter>
   </div>
 </template>
@@ -28,7 +28,7 @@ import Vue from "vue";
 import Bookshelfbar from "./Bookshelfbar";
 import Book from "../Common/Book.vue";
 import tabFooter from "../Common/Footer.vue";
-import Booklist from "../Common/Booklist.vue";
+import Booklist from "../Common/Booklike.vue";
 export default {
   name: "Bookshelf",
   components: {
@@ -42,6 +42,7 @@ export default {
       randConfig:{
         weight:-1
       },
+      likeBookConfig:{isrand: 1, weight: 20, target: 78, high: 77},
       likeBook:[],
       delBool: false,
       httpData: {

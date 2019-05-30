@@ -18,7 +18,7 @@
       :statushide="statushide"
       :rand="randConfig"
     ></Book>
-    <Booklist title="猜你喜欢" pop class="newBook" :hotlist="likeBook" :num="9" :moreId=44></Booklist>
+    <Booklist title="猜你喜欢" pop class="newBook" :hotlist="likeBook" :num="9" :moreId=44 :rand="likeBookConfig"></Booklist>
     <tabFooter tab="Bookshelf"></tabFooter>
   </div>
 </template>
@@ -28,7 +28,7 @@ import Vue from "vue";
 import Bookshelfbar from "./Bookshelfbar";
 import tabFooter from "../Common/Footer.vue";
 import Book from "../Common/Book.vue";
-import Booklist from "../Common/Booklist.vue";
+import Booklist from "../Common/Booklike.vue";
 export default {
   name: "Bookhistory",
   components: {
@@ -42,6 +42,7 @@ export default {
       Bookarr: [],
       likeBook:[],
       delBool: false,
+      likeBookConfig:{isrand: 1, weight: 20, target: 78, high: 77},
       randConfig:{
         weight:-1
       },

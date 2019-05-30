@@ -136,11 +136,30 @@ export default {
     //路由跳转书籍详情
     jump_bookinfo(id, isread, chapter_id) {
       let _this = this;
-      if (parseInt(isread) == 2) {
-        this.$router.push({ name: "read", params: { id: chapter_id } });
-      } else {
-        //this.$router.push({ name: "Bookinfo", params: { id: id } });
-        _this.loadLastRead(id)
+      if (this.rand.weight != null && this.rand.weight > 0) {
+        this.Http.post({
+          action: 3016,
+          data: {
+            bookid: id,
+            id: _this.moreId
+          },
+          success: function(result) {
+            // console.log("随机",result);
+            _this.loadLastRead(result.id)
+            /* _this.$router.push({
+              name: "BookinfoR",
+              params: { id: result.id }
+            }); */
+          }
+        });
+      } 
+      else {
+        if (parseInt(isread) == 2) {
+          this.$router.push({ name: "read", params: { id: chapter_id } });
+        } else {
+          //this.$router.push({ name: "Bookinfo", params: { id: id } });
+          _this.loadLastRead(id)
+        }
       }
     }
   },
@@ -175,7 +194,8 @@ export default {
     },
     hideClass: {
       type: String
-    }
+    },
+    rand: {}
   }
 };
 </script>

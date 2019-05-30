@@ -86,7 +86,7 @@
     <div class="r-tips">
       <p>温馨提示：</p>
       <p>VIP用户可免费阅读所有VIP作品!</p>
-      <p>储值遇到问题请联系歪歪客服QQ2503793729。</p>
+      <!-- <p>储值遇到问题请联系歪歪客服QQ2503793729。</p> -->
       <p>欢迎您使用支付宝/微信储值金币或开通VIP。</p>
     </div>
     <payway :paywayShow="isshow" @closepayway="closepayway" :pay_price="selectPrice"/>
