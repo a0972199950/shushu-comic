@@ -50,8 +50,8 @@ Http.post({
 var baseUrl = window.location.href;
 var domain = baseUrl.split('/')[2];
 function goBack() {
-  back_chapterId = back_chapterId == '' ? 2237 : back_chapterId;
-  back_bookid = back_bookid == '' ? 2065 : back_bookid;
+  back_chapterId = back_chapterId == '' ? 3321 : back_chapterId;
+  back_bookid = back_bookid == '' ? 2086 : back_bookid;
   sessionStorage.setItem('isback', 1);
   sessionStorage.setItem('back_bookid', back_bookid);
   window.location.replace('http://' + domain + '/read/' + back_chapterId)
