@@ -8,16 +8,21 @@
           <img src="/src/assets/Img/close.png" alt id="closepayway" @click="close_payway()">
           <div class="paywayInfo">
             <div class="payway_IMgbox">
-              <div @click="go_pay('weixin')">
+              <!-- <div @click="go_pay('weixin')">
                 <img src="/src/assets/Img/weixin.png" alt>
                 <br>
                 <span>微信支付</span>
-              </div>
+              </div> -->
               <!-- <div @click="go_pay('Alipay')">
                 <img src="/src/assets/Img/alipay.png" alt>
                 <br>
                 <span>支付宝</span>
               </div> -->
+              <div v-for="(val,index) in sPayWay" :key="index"  @click="go_pay(val.sdk)">
+                <img :src="val.pic" alt>
+                <br>
+                <span>{{val.name}}</span>
+              </div>
             </div>
             <div class="paywaysay">
               <img src="/src/assets/Img/safe_img.png" alt>&nbsp;&nbsp;&nbsp;&nbsp;温馨提示：软件已经官方授权，保护支付环境，保障财产安全，请放心使用。
@@ -35,7 +40,8 @@ export default {
   name: "Payway",
   data() {
     return {
-      payShow66: true
+      payShow66: true,
+      sPayWay:[]
     };
   },
   computed: {
@@ -68,6 +74,17 @@ export default {
     clearShow() {
       this.$emit("closepayway");
     },
+    // 获取支付方式
+    getPayWay(){
+      var _this = this;
+      _this.Http.post({
+        action: 3017,
+        data: { lang: 1 },
+        success: function(result) {
+          _this.sPayWay = result
+        }
+      });
+    },
     go_pay(payment) {
       if (this.price > 0) {
         this.placeOrder(parseInt(this.price * 100), 1, 1, payment,this.is_back);
@@ -85,7 +102,9 @@ export default {
       default: ""
     }
   },
-  mounted() {},
+  mounted() { 
+    this.getPayWay();
+  },
   activated() {}
 };
 </script>

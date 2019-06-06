@@ -41,7 +41,8 @@ var apiList = {
     3008: "/tongji/referer",  //记录来源
     3009: "/index/reback", //返回推荐漫画数据
     3015: "/recommend/lists", //获取推荐位内容（带随机跳转）
-    3016: "/recommend/rand"  //随机跳转书籍
+    3016: "/recommend/rand",  //随机跳转书籍
+    3017: "/order/payment"  //支付方式
 };
 
 export default apiList;
