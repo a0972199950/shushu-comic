@@ -104,13 +104,14 @@ export default {
       httpdata: {
         phone: "",
         password: "",
-        lang:1,
-        reg:1
+        lang: 1,
+        reg: 1
       }
     };
   },
   mounted() {
     this.tableHeight = document.body.clientHeight;
+    this.isloginUser();
   },
   directives: {
     focus: {
@@ -122,6 +123,20 @@ export default {
     }
   },
   methods: {
+    //判断用户是否注册过，注册过跳转到个人中心
+    isloginUser() {
+      var _this = this;
+      _this.Http.post({
+        action: 1003,
+        success: function(result) {
+          if (result.phone) {
+            _this.$router.push({
+              name: "Mine"
+            });
+          }
+        }
+      });
+    },
     changeBottom(i) {
       this.getAct = i;
     },
